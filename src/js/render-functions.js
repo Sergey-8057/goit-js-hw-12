@@ -5,6 +5,8 @@ const container = document.querySelector('.gallery');
 const loader = document.querySelector('.show-loader');
 let lightbox = null;
 
+export const loadMoreBtn = document.querySelector('.btn-load-more');
+
 function imageTamplate({
   largeImageURL,
   webformatURL,
@@ -49,7 +51,7 @@ function imagesTamplate(images) {
 
 export function createGallery(images) {
   const markup = imagesTamplate(images);
-  container.innerHTML = markup;
+  container.insertAdjacentHTML('beforeend', markup);
 
   if (!lightbox) {
     lightbox = new SimpleLightbox('.gallery a', {
@@ -73,4 +75,12 @@ export function showLoader() {
 
 export function hideLoader() {
   loader.classList.remove('loader');
+}
+
+export function showLoadMoreButton() {
+  loadMoreBtn.classList.remove('hidden');
+}
+
+export function hideLoadMoreButton() {
+  loadMoreBtn.classList.add('hidden');
 }
